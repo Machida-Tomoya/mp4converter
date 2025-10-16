@@ -1,13 +1,16 @@
 import yt_dlp
 
-url='https://youtu.be/6sDgjJSoAyY' #変換したい動画のリンク
+url='https://youtu.be/tDO3ymjTvqc' #変換したい動画のリンク
 
 ydl_opts={
-    'format':'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best',
+    'format':'bestvideo[height<=1080]+bestaudio[ext=m4a]/best',
     'merge_output_format':'mp4',
-    'outtmpl':r'C:\Users\admin\Videos\movie\%(title)s.%(ext)s', #コンピュータの保存先を指定
+    'outtmpl':r'C:\Users\admin\Videos\movie\%(title)s.%(ext)s', #mp4の保存先を指定
     'ffmpeg_location':'ffmpeg.exe',
-    'continuedl':True
+    'continuedl':True ,
+    'concurrent_fragment_downloads': 10,
+    'retries':10 ,
+    'throttled-rate':0,
 }
 
 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
